@@ -12,7 +12,7 @@ Installed with `npm i dayjs`.
 
 ## Why I picked it
 
-Before, the due badges showed raw dates like "Due 2026-10-30". To know whether that was soon, you had to work it out from today's date. I wanted a user friendly way to implement that fucntion
+Before, the due badges showed raw dates like "Due 2026-10-30". To know whether that was soon, you had to work it out from today's date. I wanted a user-friendly way to implement that function.
 
 Counting the days between two dates by hand with JavaScript's `Date` is easy to get wrong:
 
@@ -24,13 +24,12 @@ Day.js solves this in one line: `dayjs(dueOn).diff(dayjs(today), "day")` reads b
 
 ## Files that use it
 
-
-| `utils/dates.js`  
-| `views/partials/components/due-badge.ejs` 
-| `app.js`
-| `controllers/Checkout.js` 
-| `controllers/Gear.js` 
-| `controllers/Member.js` 
+- `utils/dates.js`
+- `views/partials/components/due-badge.ejs`
+- `app.js`
+- `controllers/Checkout.js`
+- `controllers/Gear.js`
+- `controllers/Member.js`
 
 ## Documentation I read
 
