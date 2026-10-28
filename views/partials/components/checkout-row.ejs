@@ -1,0 +1,20 @@
+<%# Checkout Row: checkout (with gear and member loaded), today %>
+<tr>
+  <td><a href="/gear/<%= checkout.gear.id %>"><%= checkout.gear.name %></a></td>
+  <td><a href="/members/<%= checkout.member.id %>"><%= checkout.member.getFullName() %></a></td>
+  <td><%= checkout.checkedOutOn %></td>
+  <td>
+    <% if (checkout.returnedOn) { %>
+      <span class="text-muted">Returned <%= checkout.returnedOn %></span>
+    <% } else { %>
+      <%- include("due-badge", { dueOn: checkout.dueOn, today }) %>
+    <% } %>
+  </td>
+  <td class="text-end">
+    <% if (!checkout.returnedOn) { %>
+      <form method="POST" action="/checkouts/<%= checkout.id %>/return" class="d-inline">
+        <button class="btn btn-outline-primary btn-sm">Mark returned</button>
+      </form>
+    <% } %>
+  </td>
+</tr>

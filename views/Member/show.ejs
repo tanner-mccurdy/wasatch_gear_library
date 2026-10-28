@@ -1,0 +1,28 @@
+<%- include("../partials/layout/top", { title }) %>
+
+<nav class="small mb-2"><a href="/members">&larr; All members</a></nav>
+
+<%- include("../partials/components/page-header", {
+  heading: member.getFullName(),
+  subtitle: `${member.email} · member since ${member.joinedOn}`,
+  buttonHref: "/checkouts/new",
+  buttonText: "Check out gear",
+}) %>
+
+<h2 class="h5 mb-3">Checked out now</h2>
+
+<%- include("../partials/components/checkout-table", {
+  checkouts: current,
+  today,
+  emptyMessage: `${member.firstName} doesn't have anything checked out right now.`,
+}) %>
+
+<h2 class="h5 my-3">History</h2>
+
+<%- include("../partials/components/checkout-table", {
+  checkouts: past,
+  today,
+  emptyMessage: `${member.firstName} hasn't returned anything yet.`,
+}) %>
+
+<%- include("../partials/layout/bottom") %>

@@ -1,0 +1,29 @@
+<!-- Top -->
+<%- include("partials/layout/top", { title }) %>
+
+<!-- Dashboard -->
+<div class="p-4 mb-4 rounded-3 bg-white shadow-sm hero">
+  <h1 class="h2 fw-bold">Get outside. We've got the gear.</h1>
+  <p class="lead text-muted mb-3">Track every tent, ski, and headlamp the Wasatch Gear Library lends to members.</p>
+  <a href="/checkouts/new" class="btn btn-primary">Check out gear</a>
+  <a href="/gear" class="btn btn-outline-primary ms-2">Browse the catalog</a>
+</div>
+
+<div class="row g-3 mb-4">
+  <%- include("partials/components/stat-card", { href: "/gear", label: "Gear items", value: gearCount, color: "primary" }) %>
+  <%- include("partials/components/stat-card", { href: "/members", label: "Members", value: memberCount, color: "info" }) %>
+  <%- include("partials/components/stat-card", { href: "/checkouts", label: "Checked out", value: checkedOutCount, color: "warning" }) %>
+  <%- include("partials/components/stat-card", { href: "/checkouts", label: "Overdue", value: overdueCount, color: "danger" }) %>
+</div>
+
+<!-- Due Next -->
+<h2 class="h5 mb-3">Due next</h2>
+
+<%- include("partials/components/checkout-table", {
+  checkouts: dueNext,
+  today,
+  emptyMessage: "Nothing is checked out right now. Everything is on the shelf.",
+}) %>
+
+<!-- Bottom -->
+<%- include("partials/layout/bottom") %>

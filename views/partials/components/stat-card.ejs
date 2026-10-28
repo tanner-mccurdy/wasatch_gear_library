@@ -1,0 +1,11 @@
+<%# Stat Card: href, label, value, color (a Bootstrap color like "primary") %>
+<div class="col-6 col-md-3">
+  <a href="<%= href %>" class="text-decoration-none">
+    <div class="card shadow-sm h-100 border-<%= color %>">
+      <div class="card-body">
+        <div class="text-muted small text-uppercase"><%= label %></div>
+        <div class="display-6 fw-bold text-<%= color %>"><%= value %></div>
+      </div>
+    </div>
+  </a>
+</div>

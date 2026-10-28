@@ -1,0 +1,47 @@
+<%- include("../partials/layout/top", { title }) %>
+
+<%- include("../partials/components/page-header", {
+  heading: "Members",
+  subtitle: `${members.length} people can borrow gear`,
+}) %>
+
+<div class="row g-4">
+  <div class="col-lg-8">
+    <% if (members.length === 0) { %>
+      <%- include("../partials/components/empty-state", { message: "No members yet. Add the first one with the form." }) %>
+    <% } else { %>
+    <div class="table-responsive">
+      <table class="table table-hover align-middle bg-white shadow-sm">
+        <thead class="table-light"><tr><th>Name</th><th>Email</th><th>Joined</th><th>Out now</th></tr></thead>
+        <tbody>
+          <% members.forEach((member) => { const out = outCounts.get(member.id) || 0 %>
+            <tr>
+              <td><a href="/members/<%= member.id %>" class="fw-semibold"><%= member.getFullName() %></a></td>
+              <td><%= member.email %></td>
+              <td><%= member.joinedOn %></td>
+              <td><span class="badge <%= out > 0 ? "bg-warning" : "bg-light text-dark" %>"><%= out %></span></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+    <% } %>
+  </div>
+  <div class="col-lg-4">
+    <div class="card shadow-sm"><div class="card-body">
+      <h2 class="h5">Add a member</h2>
+
+      <% if (error) { %>
+        <div class="alert alert-danger py-2"><%= error %></div>
+      <% } %>
+      <form method="POST" action="/members">
+        <input class="form-control mb-2" name="firstName" placeholder="First name" value="<%= form.firstName ?? "" %>" maxlength="50" required>
+        <input class="form-control mb-2" name="lastName" placeholder="Last name" value="<%= form.lastName ?? "" %>" maxlength="50" required>
+        <input class="form-control mb-3" name="email" type="email" placeholder="Email" value="<%= form.email ?? "" %>" maxlength="100" required>
+        <button class="btn btn-primary w-100">Add member</button>
+      </form>
+    </div></div>
+  </div>
+</div>
+
+<%- include("../partials/layout/bottom") %>

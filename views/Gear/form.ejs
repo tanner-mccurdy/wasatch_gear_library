@@ -1,0 +1,40 @@
+<%- include("../partials/layout/top", { title }) %>
+
+<nav class="small mb-2"><a href="<%= backHref %>">&larr; Back</a></nav>
+<div class="row justify-content-center">
+  <div class="col-lg-7">
+    <div class="card shadow-sm"><div class="card-body">
+      <h1 class="h4 mb-3"><%= heading %></h1>
+
+      <form method="POST" action="<%= action %>">
+        <div class="mb-3">
+          <label class="form-label" for="name">Name</label>
+          <input class="form-control" id="name" name="name" value="<%= item.name ?? "" %>" maxlength="100" required>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label" for="category">Category</label>
+            <input class="form-control" id="category" name="category" value="<%= item.category ?? "" %>" placeholder="Camping, Hiking, Winter..." maxlength="50" required>
+          </div>
+          <div class="col-md-3 mb-3">
+            <label class="form-label" for="condition">Condition</label>
+            <select class="form-select" id="condition" name="condition">
+              <% conditions.forEach((condition) => { %><option <%= condition === item.condition ? "selected" : "" %>><%= condition %></option><% }) %>
+            </select>
+          </div>
+          <div class="col-md-3 mb-3">
+            <label class="form-label" for="dailyFee">Daily fee ($)</label>
+            <input class="form-control" id="dailyFee" name="dailyFee" type="number" min="0" step="0.5" value="<%= item.dailyFee ?? "" %>">
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="description">Description</label>
+          <textarea class="form-control" id="description" name="description" rows="3"><%= item.description ?? "" %></textarea>
+        </div>
+        <button class="btn btn-primary">Save</button>
+      </form>
+    </div></div>
+  </div>
+</div>
+
+<%- include("../partials/layout/bottom") %>

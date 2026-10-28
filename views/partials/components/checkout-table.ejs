@@ -1,0 +1,17 @@
+<%# Checkout Table: checkouts (with gear and member loaded), today, emptyMessage %>
+<% if (checkouts.length === 0) { %>
+  <%- include("empty-state", { message: emptyMessage }) %>
+<% } else { %>
+<div class="table-responsive">
+  <table class="table table-hover align-middle bg-white shadow-sm rounded">
+    <thead class="table-light">
+      <tr><th>Gear</th><th>Member</th><th>Checked out</th><th>Status</th><th></th></tr>
+    </thead>
+    <tbody>
+      <% checkouts.forEach((checkout) => { %>
+        <%- include("checkout-row", { checkout, today }) %>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+<% } %>

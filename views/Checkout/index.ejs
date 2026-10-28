@@ -1,0 +1,24 @@
+<%- include("../partials/layout/top", { title }) %>
+
+<%- include("../partials/components/page-header", {
+  heading: "Checkouts",
+  subtitle: `${open.length} item(s) out right now`,
+  buttonHref: "/checkouts/new",
+  buttonText: "+ Check Out Gear",
+}) %>
+
+<%- include("../partials/components/checkout-table", {
+  checkouts: open,
+  today,
+  emptyMessage: "Nothing is checked out right now. Everything is on the shelf.",
+}) %>
+
+<h2 class="h5 my-3">Recently returned</h2>
+
+<%- include("../partials/components/checkout-table", {
+  checkouts: recentlyReturned,
+  today,
+  emptyMessage: "Nothing has been returned yet.",
+}) %>
+
+<%- include("../partials/layout/bottom") %>

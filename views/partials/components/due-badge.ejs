@@ -1,0 +1,6 @@
+<%# Due Badge: dueOn, today (both "YYYY-MM-DD"); the exact date shows on hover %>
+<% if (dueOn < today) { %>
+<span class="badge bg-danger" title="Due <%= dueOn %>"><%= dueLabel(dueOn, today) %></span>
+<% } else { %>
+<span class="badge bg-secondary" title="Due <%= dueOn %>"><%= dueLabel(dueOn, today) %></span>
+<% } %>
